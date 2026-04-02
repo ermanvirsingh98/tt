@@ -1,0 +1,115 @@
+// @use "./typo-mixins" as *;
+@use "../shared.scss" as typo;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&family=Noto+Serif:ital,wght@1,100..900&display=swap");
+
+@mixin heading-eyebrow {
+	@include typo.typo-eyebrow;
+	color: var(--color-teal-400);
+}
+
+@mixin heading-lg {
+	@include typo.typo-lg;
+	color: var(--color-teal-200);
+}
+
+@mixin heading-md {
+	@include typo.typo-md;
+	color: var(--color-teal-200);
+}
+
+@mixin heading-sm {
+	@include typo.typo-sm;
+	color: var(--color-teal-200);
+}
+
+@mixin heading-xs {
+	@include typo.typo-xs;
+	color: var(--color-teal-200);
+}
+
+@mixin heading-micro {
+	@include typo.typo-micro;
+	color: var(--color-teal-200);
+}
+
+@mixin wvi-typo {
+	p,
+	li {
+		@include typo.typo-tight;
+	}
+
+	.heading {
+		color: var(--heading-color, var(--color-teal-200));
+	}
+
+	:is(h1, h2, h3, h4, h5, h6) {
+		color: var(--heading-color, var(--color-teal-200));
+		&:has(.link) {
+			--_link-font-size: none;
+			--_link-color: currentColor;
+		}
+	}
+
+	// Eyebrow
+	.eyebrow {
+		@include heading-eyebrow;
+	}
+
+	// Headline
+	:is(h1, h2) {
+		@include typo.typo-lg;
+	}
+	.heading--xl {
+		@include typo.typo-xl;
+	}
+
+	.heading--lg {
+		@include typo.typo-lg;
+	}
+
+	.heading--md {
+		@include heading-md;
+	}
+
+	.heading--sm {
+		@include heading-sm;
+	}
+
+	.heading--xs {
+		@include heading-xs;
+	}
+
+	.heading--micro {
+		@include typo.typo-micro(true);
+	}
+
+	// Body
+
+	.ui-standard {
+		@include typo.typo-tight;
+	}
+
+	.ui-nano {
+		@include typo.typo-nano;
+	}
+
+	.ui-body {
+		@include typo.typo-tight;
+	}
+	.ui-black {
+		color: var(--color-black);
+	}
+
+	.heading-large {
+		font-size: 1.5rem;
+	}
+
+	small {
+		font-size: 0.8rem;
+	}
+
+	ul,
+	ol {
+		padding-left: 1rem;
+	}
+}

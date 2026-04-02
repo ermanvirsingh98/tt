@@ -1,0 +1,111 @@
+@use "./global/reset";
+@use "./global/layouts";
+@use "./global/typography";
+// @use "@sunwing/icons/dist/westjet-vacations/css/icons" as *;
+@use "@sunwing/icons/dist/westjet-vacations/css/all" as *;
+@import "@sunwing/design-tokens/css/wvi_variables.css";
+
+
+
+// testing purposes
+
+.article-quote {
+  position: relative;
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  color: #333;
+  background: #f9f9f9;
+}
+
+.article-quote::before {
+  content: "“";
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  font-size: 4rem;
+  color: #ccc;
+}
+
+.article-quote::after {
+  content: "”";
+  position: absolute;
+  right: 10px;
+  bottom: -20px;
+  font-size: 4rem;
+  color: #ccc;
+}
+
+.sub-button {
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+section {
+    margin: 2rem 0;
+}
+
+.highlight-article{
+    display: flex;
+    gap: 2rem;
+}
+
+body {
+    max-width: 80rem;
+    margin: auto;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+  }
+
+   .header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    margin-bottom: 3rem;
+  }
+
+
+  .breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #2563eb;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .current {
+  color: #6b7280;
+}
+
+.separator {
+  margin: 0 8px;
+  color: #9ca3af;
+}

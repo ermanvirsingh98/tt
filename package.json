@@ -10,12 +10,18 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.1.6",
     "@contentful/rich-text-types": "^17.2.5",
+    "@sunwing/design-tokens": "0.0.0-alpha-20250805182757",
+    "@sunwing/icons": "0.0.0-alpha-20250805182757",
+    "@sunwing/wvi-components": "0.0.0-alpha-20260324152845",
     "contentful": "^11.10.7",
     "next": "16.1.7",
     "next-intl": "^4.8.3",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "reading-time": "^1.5.0",
+    "sass": "^1.98.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",

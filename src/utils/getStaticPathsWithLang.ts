@@ -1,7 +1,6 @@
 import { routing } from "@/i18n/routing";
-import { getArticles } from "@/lib/functions/article";
-import { getCategories } from "@/lib/functions/category";
-import { getLang } from "./getLang";
+import { getAllArticles } from "@/lib/contentful/article";
+import { getCategories } from "@/lib/contentful/category";
 
 export const locales = routing.locales
 
@@ -16,14 +15,13 @@ export async function generateCategoryPaths() {
     const allPaths = await Promise.all(
         locales.map(async (locale) => {
 
-            const categories = await getCategories(locale);
+            const categories = await getCategories(localeMap[locale]);
             return categories.map((cat: any) => ({
-                lang: getLang(locale), category: cat.slug,
+                lang: locale, category: cat.slug,
             }));
         })
     );
 
-    console.log("all category paths", allPaths.flat());
 
     // Flatten the array of arrays into a single array
     return allPaths.flat();
@@ -33,31 +31,31 @@ export async function generateSubcategoryPaths() {
     const allPaths = await Promise.all(
         locales.map(async (locale) => {
 
-            const categories = await getCategories(locale);
+            const categories = await getCategories(localeMap[locale]);
             return categories.flatMap((cat: any) =>
                 cat.subcategories.map((subcat: any) => ({
-                    lang: getLang(locale), category: cat.slug, subcategory: subcat.slug,
+                    lang: locale, category: cat.slug, subcategory: subcat.slug,
 
                 }))
             );
         })
     );
 
+
     return allPaths.flat();
 }
 
 
-export const generateArticlePaths = async () => {
+export const generateArticlePaths = async (): Promise<{ lang: string; slug: string }[]> => {
     const allPaths = await Promise.all(
         locales.map(async (locale) => {
-            const articles = await getArticles({ locale });
+            const articles = await getAllArticles({ locale: localeMap[locale] });
 
             return articles.map((article) => ({
-                lang: getLang(locale), slug: article.slug,
+                lang: locale, slug: article.slug,
             }));
         })
     );
-    console.log("all article paths", allPaths.flat());
 
 
     return allPaths.flat();

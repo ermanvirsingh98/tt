@@ -1,17 +1,10 @@
-import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
 
-const langs = ['en', 'fr'];
+export default createMiddleware(routing);
 
-export function proxy(request: NextRequest) {
-    // const { pathname } = request.nextUrl;
-    // const segments = pathname.split('/');
-
-    // const lang = segments[1];
-
-    // if (lang && !langs.includes(lang)) {
-    //     return NextResponse.redirect(new URL('/en', request.url));
-    // }
-
-    // return NextResponse.next();
-}
+export const config = {
+    matcher: [
+        '/((?!_next|_vercel|.*\\..*).*)',
+    ],
+};

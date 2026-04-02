@@ -1,20 +1,33 @@
-import { routing } from "@/i18n/routing";
 import { ReactNode } from "react";
-import { Locale, hasLocale, NextIntlClientProvider } from "next-intl";
-import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
-import { getLang } from "@/utils/getLang";
+import { routing } from "@/i18n/routing";
+import { NextIntlClientProvider } from "next-intl";
 
-export const revalidate = 60;
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+import "@/styles/index.scss";
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ lang: getLang(locale) }));
+  return routing.locales.map((locale) => ({ lang: locale }));
 }
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: any;
+}) {
+  const { lang } = await params;
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang={lang}>
+      <body className="container">
+        <NextIntlClientProvider>
+          <Header />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }

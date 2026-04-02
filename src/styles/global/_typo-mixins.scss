@@ -1,0 +1,101 @@
+@mixin heading-color {
+	color: var(--heading-color, var(--sov-blue-dark));
+}
+
+@mixin typo-weight($weight: normal) {
+  @if $weight == "light" {
+    font-weight: var(--font-weight-light);
+  } @else if $weight == "normal" {
+    font-weight: var(--font-weight-normal);
+  } @else if $weight == "medium" {
+    font-weight: var(--font-weight-medium);
+	} @else if $weight == "semibold" {
+    font-weight: var(--font-weight-semibold);
+	} @else if $weight == "bold" {
+    font-weight: var(--font-weight-bold);
+  } @else {
+    font-weight: var(--font-weight-normal);
+  }
+}
+
+@mixin h-display($weight: bold, $color: true) {
+	@if $color {
+		@include heading-color;
+	}
+	font-size: var(--heading-size-display-font-size);
+	line-height: var(--heading-size-display-line-height);
+	@include typo-weight($weight);
+}
+
+@mixin h1($weight: bold) {
+	@include heading-color;
+	font-size: var(--heading-size-h1-font-size);
+	line-height: var(--heading-size-h1-line-height);
+	@include typo-weight($weight);
+}
+
+@mixin h2($weight: bold, $color: true) {
+	@if $color {
+		@include heading-color;
+	}
+	font-size: var(--heading-size-h2-font-size);
+	line-height: var(--heading-size-h2-line-height);
+	@include typo-weight($weight);
+}
+
+@mixin h3($weight: bold, $color: true) {
+	@if $color {
+		@include heading-color;
+	}
+	font-size: var(--heading-size-h3-font-size);
+	line-height: var(--heading-size-h3-line-height);
+	@include typo-weight($weight);
+}
+
+@mixin ui-body($weight: false) {
+	font-size: var(--ui-body-font-size);
+	line-height: var(--ui-body-line-height);
+	@include typo-weight($weight);
+}
+
+@mixin ui-nav($weight: normal) {
+	font-size: var(--ui-body-font-size);
+	line-height: var(--ui-body-line-height);
+	font-weight: var(--ui-body-weight, var(--ui-body-font-weight));
+	@include typo-weight($weight);
+}
+
+@mixin ui-caption($weight: normal) {
+	font-size: var(--ui-caption-font-size);
+	line-height: var(--ui-caption-line-height);
+	font-style: var(--ui-caption-font-style);
+	@include typo-weight($weight);
+}
+
+@mixin ui-mice($weight: normal) {
+	font-size: var(--ui-mice-font-size);
+	line-height: var(--ui-mice-line-height);
+	font-style: var(--ui-mice-font-style);
+	@include typo-weight($weight);
+}
+
+@mixin ui-list($color: var(--sov-blue-dark)) {
+	list-style: none;
+	li {
+		position: relative;
+		padding-left: 6px;
+		&:before {
+			content: " ";
+			background-color: $color;
+			border-radius: 50%;
+			position: absolute;
+			left: -12px;
+			top: 8px;
+			width: 6px;
+			height: 6px;
+		}
+		+ li {
+			margin-top: 6px;
+		}
+	}
+}

@@ -1,29 +1,40 @@
-import { getArticleBySlug } from "@/lib/functions/article";
-import { getCategryBySlug } from "@/lib/functions/category";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Entry } from "contentful";
+
+import CardGrid from "@/components/CardGrid";
+import Article from "@/components/Article/Article";
+import Breadcrumb from "@/components/Breadcrumb";
+
+import { TypeBlogCategorySkeleton } from "@/lib/contentful/types";
+import {
+  getArticleBySlug,
+  getAllArticles,
+  getHighlightedArticle,
+} from "@/lib/contentful/article";
+import { getCategryBySlug } from "@/lib/contentful/category";
 import {
   generateCategoryPaths,
   generateArticlePaths,
   localeMap,
-  generateSubcategoryPaths,
 } from "@/utils/getStaticPathsWithLang";
-import React from "react";
+import Category from "@/components/Category/Category";
+
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const articles = await generateArticlePaths();
   const categories = await generateCategoryPaths();
 
-  // const subcategories = await generateSubcategoryPaths();
-
   return [
-    ...articles.map((article) => ({ lang: article.lang, slug: article.slug })),
+    ...articles.map((article) => ({
+      lang: article.lang,
+      slug: article.slug,
+    })),
     ...categories.map((category) => ({
       lang: category.lang,
       slug: category.category,
     })),
-    // ...subcategories.map((subcategory) => ({
-    //   lang: subcategory.lang,
-    //   slug: subcategory.subcategory,
-    // })),
   ];
 }
 
@@ -34,32 +45,17 @@ const Page = async ({
 }) => {
   const { lang, slug } = await params;
 
-  console.log("lang", localeMap[lang]);
-
   const locale = localeMap[lang];
 
-  // Check stories first (or use a unified API)
-  const article = await getArticleBySlug(slug, locale);
-  if (article)
-    return (
-      <div>
-        <div>Article {slug}</div>
-        <pre>{JSON.stringify(article, null, 2)}</pre>
-      </div>
-    );
-
   const category = await getCategryBySlug(slug, locale);
-  if (category)
-    return (
-      <div>
-        <div>Category {slug}</div>
-        <pre>{JSON.stringify(category, null, 2)}</pre>
-      </div>
-    );
+  if (category) {
+    return <Category category={category} lang={lang} locale={locale} />;
+  }
 
-  // notFound(); // 404 if neither
+  const article = await getArticleBySlug(slug, locale);
+  if (article) return <Article article={article} lang={lang} />;
 
-  return <div>Not found</div>;
+  return notFound();
 };
 
 export default Page;

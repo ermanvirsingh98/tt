@@ -1,0 +1,28 @@
+@use "./base-variables" as *;
+@use "./functions" as *;
+
+// TODO: Move into tokens
+$border-radius: 3px;
+$button-radius: 4px;
+$input-radius: 1.2rem;
+$search-input-padding-h: 0.75rem;
+
+$header-height: 90px;
+$header-shadow: 0 7px 6px rgba($grey-dark, 0.25);
+$box-shadow-blur: 8px;
+$animation-duration: 0.4s;
+$line-animation: cubic-bezier(0.42, 0.63, 0.13, 0.99);
+$line-animation-speed: $animation-duration;
+
+$side-menu-shadow: pxToRem(-5px) pxToRem(9px) pxToRem(16px) rgba(0, 0, 0, 0.29);
+$line-height-base: 1.5 !default;
+$inner-box-padding-x: pxToRem(16px);
+$section-spacing: 3rem;
+
+$sizeSm: 30px;
+$sizeMd: 40px;
+$sizeLg: 60px;
+
+$page-width: 1140px;
+
+$bpFold: 340px;

@@ -1,0 +1,87 @@
+@use "@sunwing/wvi-components/mixins/typography.scss" as typo;
+
+html {
+	@media (prefers-reduced-motion: no-preference) {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	// @include typo.typo-tight;
+	margin: 0;
+
+	color: var(--color-gray-100);
+	font-family: var(--font-sans);
+
+	background-color: var(--color-gray-600);
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+
+
+// TODO: Remove
+.margin-regular {
+	margin: 2.188rem 0;
+}
+
+.inline-flex {
+	display: inline-flex;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.relative {
+	position: relative;
+}
+
+.margin-bottom-regular {
+	margin-bottom: var(--spacing-4);
+}
+
+.margin-bottom-lg {
+	margin-bottom: var(--spacing-8);
+}
+
+.margin-top-regular {
+	margin-top: var(--spacing-4);
+}
+
+.margin-top-lg {
+	margin-top: var(--spacing-8);
+}
+// TODO: End remove
+
+.no-underline {
+	text-decoration: none;
+
+	@media (any-hover: hover) {
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.sr-only {
+	// @include sr-only;
+}
+
+// From Bootstrap reboot
+button:focus:not(:focus-visible) {
+	outline: 0;
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+*:focus-visible {
+	outline-color: var(--color-teal-200);
+}
