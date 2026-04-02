@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import React from "react";
 import Breadcrumb from "../Breadcrumb";
 import { Entry } from "contentful";
